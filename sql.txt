@@ -1,0 +1,39 @@
+create table Products(
+	id_product serial primary key,
+	name_product varchar(50) not null
+);
+
+create table Categories(
+	id_category serial PRIMARY key,
+	name_category varchar(50) not null
+);
+
+create table ProductCategory(
+	id_product serial references Products(id_product) PRIMARY key,
+	id_category serial references Categories(id_category) PRIMARY key
+);
+
+insert into products values(default, 'Snikers');
+insert into Products values(default, 'Bounty');
+insert into Products values(default, 'Adrenaline');
+insert into Products values(default, 'Макароны');
+insert into Products values(default, 'Лимонад');
+insert into Products values(default, 'Мндмс');
+
+
+insert into Categories values(default, 'шоколад');
+insert into Categories values(default, 'напитки');
+insert into Categories values(default, 'хлебобулочные');
+insert into Categories values(default, 'бакалея');
+
+insert into ProductCategory values(1, 1);
+insert into ProductCategory values(2, 1);
+insert into ProductCategory values(3, 2);
+insert into ProductCategory values(4, 2);
+insert into ProductCategory values(5, 4);
+
+
+SELECT Products.name_product AS ProductName, Categories.name_category AS CategoryName
+FROM Products
+LEFT JOIN ProductCategory ON Products.id_product = ProductCategory.id_product
+LEFT JOIN Categories ON ProductCategory.id_category = Categories.id_category;
