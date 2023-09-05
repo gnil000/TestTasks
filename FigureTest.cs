@@ -52,13 +52,10 @@ namespace TestProject4
             double x = 0;
             double y = 0;
             double z = 0;
-            double expected = 0;
             // act
             Figure a = new Figure();
-            double actual = a.CalculateArea(x, y, z);
             // assert
-            Assert.AreEqual(expected, actual);
-
+            Assert.ThrowsException<ArgumentException>(() => a.CalculateArea(x, y, z));
         }
 
         [TestMethod]
